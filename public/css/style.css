@@ -1,15 +1,15 @@
 :root {
-  --bg: #f3f6f4;
+  --bg: #f2f4f8;
   --surface: #ffffff;
-  --ink: #1f2a24;
-  --muted: #5f6f66;
-  --line: #d7e0da;
-  --primary: #1f6b4a;
-  --primary-dark: #155239;
-  --success: #2f7d4a;
+  --ink: #1a2332;
+  --muted: #5c6b7a;
+  --line: #d5dde8;
+  --primary: #1e3a5f;
+  --primary-dark: #152a45;
+  --success: #1f6b4a;
   --danger: #b42318;
   --warning: #9a6700;
-  --shadow: 0 10px 30px rgba(20, 40, 30, 0.08);
+  --shadow: 0 10px 30px rgba(20, 35, 55, 0.08);
   --radius: 16px;
 }
 
@@ -22,8 +22,8 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at top left, rgba(31, 107, 74, 0.12), transparent 35%),
-    linear-gradient(180deg, #eef5f0 0%, var(--bg) 40%, #e8efea 100%);
+    radial-gradient(circle at top left, rgba(30, 58, 95, 0.1), transparent 35%),
+    linear-gradient(180deg, #eef2f7 0%, var(--bg) 40%, #e8edf4 100%);
   min-height: 100vh;
 }
 
@@ -140,7 +140,7 @@ h1, h2 {
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 1rem 1.1rem;
-  background: #fbfffc;
+  background: #f8fafc;
 }
 
 .cartao__topo {
@@ -203,7 +203,7 @@ button.botao:hover {
 }
 
 .botao--secundario:hover {
-  background: #f4f7f5;
+  background: #f0f3f8;
 }
 
 .botao--sucesso {
@@ -280,13 +280,6 @@ button.botao:hover {
   text-align: center;
   padding: 2rem 1rem;
   color: var(--muted);
-}
-
-.rodape {
-  padding: 1.5rem 0 2rem;
-  color: var(--muted);
-  text-align: center;
-  font-size: 0.92rem;
 }
 
 @media (max-width: 720px) {
