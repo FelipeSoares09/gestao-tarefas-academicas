@@ -1,0 +1,24 @@
+{
+  "name": "gestao-tarefas-academicas",
+  "version": "1.0.0",
+  "description": "Aplicação Node.js MVC para cadastro e gestão de tarefas acadêmicas (armazenamento em memória)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "mvc",
+    "express",
+    "ejs",
+    "tarefas"
+  ],
+  "author": "FelipeSoares09",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "method-override": "^3.0.0"
+  }
+}

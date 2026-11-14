@@ -1,0 +1,63 @@
+<%- include('../partials/header') %>
+
+<section class="painel">
+  <div class="painel__cabecalho">
+    <div>
+      <h1>Detalhes da tarefa</h1>
+      <p class="subtitulo">Todas as informações cadastradas para esta atividade.</p>
+    </div>
+    <a class="botao botao--secundario" href="/tarefas">Voltar</a>
+  </div>
+
+  <% if (typeof mensagem !== 'undefined' && mensagem) { %>
+    <p class="alerta alerta--sucesso"><%= mensagem %></p>
+  <% } %>
+
+  <article class="cartao cartao--detalhe">
+    <div class="cartao__topo">
+      <h2><%= tarefa.titulo %></h2>
+      <span class="status status--<%= tarefa.status %>">
+        <%= tarefa.status === 'pendente' ? 'Pendente' : 'Concluída' %>
+      </span>
+    </div>
+
+    <dl class="detalhes">
+      <div>
+        <dt>ID</dt>
+        <dd><%= tarefa.id %></dd>
+      </div>
+      <div>
+        <dt>Disciplina</dt>
+        <dd><%= tarefa.disciplina %></dd>
+      </div>
+      <div>
+        <dt>Descrição</dt>
+        <dd><%= tarefa.descricao ? tarefa.descricao : 'Sem descrição.' %></dd>
+      </div>
+      <div>
+        <dt>Status</dt>
+        <dd><%= tarefa.status %></dd>
+      </div>
+      <div>
+        <dt>Criada em</dt>
+        <dd><%= new Date(tarefa.criadaEm).toLocaleString('pt-BR') %></dd>
+      </div>
+      <div>
+        <dt>Atualizada em</dt>
+        <dd><%= new Date(tarefa.atualizadaEm).toLocaleString('pt-BR') %></dd>
+      </div>
+    </dl>
+
+    <div class="acoes">
+      <a class="botao" href="/tarefas/<%= tarefa.id %>/editar">Editar</a>
+      <% if (tarefa.status === 'pendente') { %>
+        <form action="/tarefas/<%= tarefa.id %>/concluir" method="POST">
+          <button class="botao botao--sucesso" type="submit">Concluir</button>
+        </form>
+      <% } %>
+      <a class="botao botao--perigo" href="/tarefas/<%= tarefa.id %>/excluir">Excluir</a>
+    </div>
+  </article>
+</section>
+
+<%- include('../partials/footer') %>

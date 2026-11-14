@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+
+<section class="painel painel--form">
+  <h1>Confirmar exclusão</h1>
+  <p class="subtitulo">Esta ação remove a tarefa do array em memória e não pode ser desfeita enquanto o servidor estiver em execução.</p>
+
+  <div class="alerta alerta--erro">
+    <p>Deseja realmente excluir a tarefa <strong><%= tarefa.titulo %></strong> (ID <%= tarefa.id %>)?</p>
+  </div>
+
+  <dl class="detalhes">
+    <div>
+      <dt>Disciplina</dt>
+      <dd><%= tarefa.disciplina %></dd>
+    </div>
+    <div>
+      <dt>Status</dt>
+      <dd><%= tarefa.status === 'pendente' ? 'Pendente' : 'Concluída' %></dd>
+    </div>
+  </dl>
+
+  <form action="/tarefas/<%= tarefa.id %>?_method=DELETE" method="POST" class="acoes">
+    <button class="botao botao--perigo" type="submit">Sim, excluir</button>
+    <a class="botao botao--secundario" href="/tarefas/<%= tarefa.id %>">Cancelar</a>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>

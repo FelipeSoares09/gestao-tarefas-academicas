@@ -1,0 +1,57 @@
+<%- include('../partials/header') %>
+
+<section class="painel painel--form">
+  <h1><%= tituloPagina %></h1>
+  <p class="subtitulo">Título e disciplina são obrigatórios. A descrição é opcional (até 500 caracteres).</p>
+
+  <% if (erros && erros.length) { %>
+    <ul class="alerta alerta--erro">
+      <% erros.forEach(function(erro) { %>
+        <li><%= erro %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <form class="formulario" action="<%= acao %>" method="<%= metodo %>">
+    <label for="titulo">Título *</label>
+    <input
+      id="titulo"
+      name="titulo"
+      type="text"
+      minlength="3"
+      maxlength="100"
+      required
+      value="<%= tarefa.titulo || '' %>"
+      placeholder="Ex.: Estudar revisões de prova"
+    >
+
+    <label for="disciplina">Disciplina *</label>
+    <input
+      id="disciplina"
+      name="disciplina"
+      type="text"
+      minlength="2"
+      maxlength="80"
+      required
+      value="<%= tarefa.disciplina || '' %>"
+      placeholder="Ex.: Programação Web"
+    >
+
+    <label for="descricao">Descrição (opcional)</label>
+    <textarea
+      id="descricao"
+      name="descricao"
+      maxlength="500"
+      rows="5"
+      placeholder="Detalhes da tarefa acadêmica"
+    ><%= tarefa.descricao || '' %></textarea>
+    <p class="ajuda">Máximo de 500 caracteres.</p>
+
+    <div class="acoes">
+      <button class="botao" type="submit">Salvar</button>
+      <a class="botao botao--secundario" href="/tarefas">Cancelar</a>
+    </div>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>

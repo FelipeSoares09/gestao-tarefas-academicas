@@ -1,0 +1,62 @@
+<%- include('../partials/header') %>
+
+<section class="painel">
+  <div class="painel__cabecalho">
+    <div>
+      <h1>Tarefas acadêmicas</h1>
+      <p class="subtitulo">Cadastre, consulte, edite, conclua e filtre suas atividades.</p>
+    </div>
+    <a class="botao" href="/tarefas/nova">Nova tarefa</a>
+  </div>
+
+  <% if (mensagem) { %>
+    <p class="alerta alerta--sucesso"><%= mensagem %></p>
+  <% } %>
+
+  <% if (erro) { %>
+    <p class="alerta alerta--erro"><%= erro %></p>
+  <% } %>
+
+  <div class="filtros">
+    <a class="filtro <%= filtro === 'todas' ? 'filtro--ativo' : '' %>" href="/tarefas?status=todas">Todas</a>
+    <a class="filtro <%= filtro === 'pendente' ? 'filtro--ativo' : '' %>" href="/tarefas?status=pendente">Pendentes</a>
+    <a class="filtro <%= filtro === 'concluida' ? 'filtro--ativo' : '' %>" href="/tarefas?status=concluida">Concluídas</a>
+    <span class="contador"><%= tarefas.length %> resultado(s)</span>
+  </div>
+
+  <% if (tarefas.length === 0) { %>
+    <div class="vazio">
+      <p>Nenhuma tarefa encontrada para este filtro.</p>
+      <a class="botao botao--secundario" href="/tarefas/nova">Cadastrar primeira tarefa</a>
+    </div>
+  <% } else { %>
+    <div class="lista">
+      <% tarefas.forEach(function(tarefa) { %>
+        <article class="cartao">
+          <div class="cartao__topo">
+            <h2><%= tarefa.titulo %></h2>
+            <span class="status status--<%= tarefa.status %>">
+              <%= tarefa.status === 'pendente' ? 'Pendente' : 'Concluída' %>
+            </span>
+          </div>
+          <p class="meta"><strong>Disciplina:</strong> <%= tarefa.disciplina %></p>
+          <p class="descricao">
+            <%= tarefa.descricao ? tarefa.descricao : 'Sem descrição.' %>
+          </p>
+          <div class="acoes">
+            <a class="botao botao--pequeno" href="/tarefas/<%= tarefa.id %>">Detalhes</a>
+            <a class="botao botao--pequeno botao--secundario" href="/tarefas/<%= tarefa.id %>/editar">Editar</a>
+            <% if (tarefa.status === 'pendente') { %>
+              <form action="/tarefas/<%= tarefa.id %>/concluir" method="POST">
+                <button class="botao botao--pequeno botao--sucesso" type="submit">Concluir</button>
+              </form>
+            <% } %>
+            <a class="botao botao--pequeno botao--perigo" href="/tarefas/<%= tarefa.id %>/excluir">Excluir</a>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  <% } %>
+</section>
+
+<%- include('../partials/footer') %>
